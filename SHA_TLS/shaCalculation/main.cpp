@@ -24,6 +24,7 @@ SHA_CTX g_ctxMainData;
 pthread_cond_t g_condVar;
 pthread_mutex_t g_mutexLock(PTHREAD_MUTEX_INITIALIZER);
 bool g_bFound = false;
+std::string result;
 
 int get_count_of_cpu_cores() {
 	return sysconf(_SC_NPROCESSORS_ONLN);
@@ -62,6 +63,7 @@ static void* Worker(void *param) {
 				cout << endl;
 				pthread_mutex_lock(&g_mutexLock);
 				g_bFound = true;
+				result = data;
 				pthread_cond_signal(&g_condVar);
 				pthread_mutex_unlock(&g_mutexLock);
 				return 0;

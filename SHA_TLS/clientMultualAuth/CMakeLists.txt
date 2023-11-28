@@ -11,7 +11,10 @@ add_executable(tls_client main.cpp)
 target_include_directories(tls_client PRIVATE ${OPENSSL_INCLUDE_DIR})
 
 # Link against OpenSSL libraries
-target_link_libraries(tls_client PRIVATE ${OPENSSL_LIBRARIES})
+target_link_libraries(tls_client PRIVATE ${OPENSSL_LIBRARIES} pthread)
 
 # Specify C++ version
 target_compile_features(tls_client PRIVATE cxx_std_11)
+
+
+
