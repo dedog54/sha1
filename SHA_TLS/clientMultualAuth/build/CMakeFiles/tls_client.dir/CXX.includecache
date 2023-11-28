@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/main.cpp
+iostream
+-
+cstring
+-
+openssl/ssl.h
+-
+openssl/err.h
+-
+netinet/in.h
+-
+arpa/inet.h
+-
+unistd.h
+-
+string
+-
+sstream
+-
+vector
+-
+random
+-
+algorithm
+-
+stdio.h
+-
+stdlib.h
+-
+openssl/sha.h
+-
+pthread.h
+-
+sys/time.h
+-
+iomanip
+-
+
