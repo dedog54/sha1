@@ -150,6 +150,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+sha1.o: sha1.cpp.o
+
+.PHONY : sha1.o
+
+# target to build an object file
+sha1.cpp.o:
+	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/sha1.cpp.o
+.PHONY : sha1.cpp.o
+
+sha1.i: sha1.cpp.i
+
+.PHONY : sha1.i
+
+# target to preprocess a source file
+sha1.cpp.i:
+	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/sha1.cpp.i
+.PHONY : sha1.cpp.i
+
+sha1.s: sha1.cpp.s
+
+.PHONY : sha1.s
+
+# target to generate assembly for a file
+sha1.cpp.s:
+	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/sha1.cpp.s
+.PHONY : sha1.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,6 +189,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... sha1.o"
+	@echo "... sha1.i"
+	@echo "... sha1.s"
 .PHONY : help
 
 

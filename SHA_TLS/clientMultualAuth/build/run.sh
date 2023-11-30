@@ -4,7 +4,7 @@
 command_to_run="./tls_client"
 
 # Maximum execution time in seconds (2 hours)
-max_execution_time=20
+max_execution_time=7200
 
 # Function to handle interrupt signal (Ctrl+C)
 cleanup() {

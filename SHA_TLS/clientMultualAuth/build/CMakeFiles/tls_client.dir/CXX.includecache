@@ -43,4 +43,12 @@ sys/time.h
 -
 iomanip
 -
+sha1.h
+/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/sha1.h
+
+/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/sha1.h
+iostream
+-
+string
+-
 
