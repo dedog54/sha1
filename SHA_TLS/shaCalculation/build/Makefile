@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth
+CMAKE_SOURCE_DIR = /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/build
+CMAKE_BINARY_DIR = /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/build/CMakeFiles /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/build/CMakeFiles /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named tls_client
+# Target rules for targets named sha
 
 # Build rule for target.
-tls_client: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tls_client
-.PHONY : tls_client
+sha: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sha
+.PHONY : sha
 
 # fast build rule for target.
-tls_client/fast:
-	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/build
-.PHONY : tls_client/fast
+sha/fast:
+	$(MAKE) -f CMakeFiles/sha.dir/build.make CMakeFiles/sha.dir/build
+.PHONY : sha/fast
 
 main.o: main.cpp.o
 
@@ -129,7 +129,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/sha.dir/build.make CMakeFiles/sha.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -138,7 +138,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/sha.dir/build.make CMakeFiles/sha.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -147,7 +147,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/sha.dir/build.make CMakeFiles/sha.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 sha1.o: sha1.cpp.o
@@ -156,7 +156,7 @@ sha1.o: sha1.cpp.o
 
 # target to build an object file
 sha1.cpp.o:
-	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/sha1.cpp.o
+	$(MAKE) -f CMakeFiles/sha.dir/build.make CMakeFiles/sha.dir/sha1.cpp.o
 .PHONY : sha1.cpp.o
 
 sha1.i: sha1.cpp.i
@@ -165,7 +165,7 @@ sha1.i: sha1.cpp.i
 
 # target to preprocess a source file
 sha1.cpp.i:
-	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/sha1.cpp.i
+	$(MAKE) -f CMakeFiles/sha.dir/build.make CMakeFiles/sha.dir/sha1.cpp.i
 .PHONY : sha1.cpp.i
 
 sha1.s: sha1.cpp.s
@@ -174,35 +174,8 @@ sha1.s: sha1.cpp.s
 
 # target to generate assembly for a file
 sha1.cpp.s:
-	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/sha1.cpp.s
+	$(MAKE) -f CMakeFiles/sha.dir/build.make CMakeFiles/sha.dir/sha1.cpp.s
 .PHONY : sha1.cpp.s
-
-tls.o: tls.cpp.o
-
-.PHONY : tls.o
-
-# target to build an object file
-tls.cpp.o:
-	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/tls.cpp.o
-.PHONY : tls.cpp.o
-
-tls.i: tls.cpp.i
-
-.PHONY : tls.i
-
-# target to preprocess a source file
-tls.cpp.i:
-	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/tls.cpp.i
-.PHONY : tls.cpp.i
-
-tls.s: tls.cpp.s
-
-.PHONY : tls.s
-
-# target to generate assembly for a file
-tls.cpp.s:
-	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/tls.cpp.s
-.PHONY : tls.cpp.s
 
 # Help Target
 help:
@@ -212,16 +185,13 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... tls_client"
+	@echo "... sha"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
 	@echo "... sha1.o"
 	@echo "... sha1.i"
 	@echo "... sha1.s"
-	@echo "... tls.o"
-	@echo "... tls.i"
-	@echo "... tls.s"
 .PHONY : help
 
 

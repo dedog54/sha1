@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/tls_client.dir/main.cpp.o"
   "CMakeFiles/tls_client.dir/sha1.cpp.o"
+  "CMakeFiles/tls_client.dir/tls.cpp.o"
   "tls_client"
   "tls_client.pdb"
 )

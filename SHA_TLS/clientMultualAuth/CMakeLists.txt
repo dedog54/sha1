@@ -5,7 +5,7 @@ project(TLSClientExample)
 find_package(OpenSSL REQUIRED)
 
 # Add executable
-add_executable(tls_client main.cpp)
+add_executable(tls_client main.cpp sha1.cpp tls.cpp)
 
 # Include OpenSSL headers
 target_include_directories(tls_client PRIVATE ${OPENSSL_INCLUDE_DIR})

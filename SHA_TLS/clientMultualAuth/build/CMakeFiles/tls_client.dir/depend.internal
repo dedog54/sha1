@@ -4,6 +4,11 @@
 CMakeFiles/tls_client.dir/main.cpp.o
  /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/main.cpp
  /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/sha1.h
+ /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/tls.h
 CMakeFiles/tls_client.dir/sha1.cpp.o
  /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/sha1.cpp
  /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/sha1.h
+CMakeFiles/tls_client.dir/tls.cpp.o
+ /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/sha1.h
+ /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/tls.cpp
+ /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/tls.h

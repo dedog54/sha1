@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/sha.dir/main.cpp.o CMakeFiles/sha.dir/sha1.cpp.o  -o sha  /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libcrypto.so -lpthread 

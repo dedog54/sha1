@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/main.cpp
+iostream
+-
+sha1.h
+/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/sha1.h
+
+/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/sha1.cpp
+sha1.h
+/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/sha1.h
+sstream
+-
+iomanip
+-
+fstream
+-
+unistd.h
+-
+stdio.h
+-
+random
+-
+iostream
+-
+sys/time.h
+-
+
+/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/sha1.h
+iostream
+-
+string
+-
+

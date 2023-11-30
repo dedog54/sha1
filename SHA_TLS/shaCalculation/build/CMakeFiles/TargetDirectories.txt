@@ -1,0 +1,3 @@
+/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/build/CMakeFiles/sha.dir

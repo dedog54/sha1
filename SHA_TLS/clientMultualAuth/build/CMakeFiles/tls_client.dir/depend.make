@@ -3,7 +3,12 @@
 
 CMakeFiles/tls_client.dir/main.cpp.o: ../main.cpp
 CMakeFiles/tls_client.dir/main.cpp.o: ../sha1.h
+CMakeFiles/tls_client.dir/main.cpp.o: ../tls.h
 
 CMakeFiles/tls_client.dir/sha1.cpp.o: ../sha1.cpp
 CMakeFiles/tls_client.dir/sha1.cpp.o: ../sha1.h
+
+CMakeFiles/tls_client.dir/tls.cpp.o: ../sha1.h
+CMakeFiles/tls_client.dir/tls.cpp.o: ../tls.cpp
+CMakeFiles/tls_client.dir/tls.cpp.o: ../tls.h
 

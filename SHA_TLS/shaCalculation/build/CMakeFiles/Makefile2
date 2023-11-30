@@ -44,16 +44,16 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth
+CMAKE_SOURCE_DIR = /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/build
+CMAKE_BINARY_DIR = /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/build
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/tls_client.dir/all
+all: CMakeFiles/sha.dir/all
 
 .PHONY : all
 
@@ -63,36 +63,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/tls_client.dir/clean
+clean: CMakeFiles/sha.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/tls_client.dir
+# Target rules for target CMakeFiles/sha.dir
 
 # All Build rule for target.
-CMakeFiles/tls_client.dir/all:
-	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/depend
-	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/build/CMakeFiles --progress-num=1,2,3,4 "Built target tls_client"
-.PHONY : CMakeFiles/tls_client.dir/all
+CMakeFiles/sha.dir/all:
+	$(MAKE) -f CMakeFiles/sha.dir/build.make CMakeFiles/sha.dir/depend
+	$(MAKE) -f CMakeFiles/sha.dir/build.make CMakeFiles/sha.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/build/CMakeFiles --progress-num=1,2,3 "Built target sha"
+.PHONY : CMakeFiles/sha.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/tls_client.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/build/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/tls_client.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/build/CMakeFiles 0
-.PHONY : CMakeFiles/tls_client.dir/rule
+CMakeFiles/sha.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/sha.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/shaCalculation/build/CMakeFiles 0
+.PHONY : CMakeFiles/sha.dir/rule
 
 # Convenience name for target.
-tls_client: CMakeFiles/tls_client.dir/rule
+sha: CMakeFiles/sha.dir/rule
 
-.PHONY : tls_client
+.PHONY : sha
 
 # clean rule for target.
-CMakeFiles/tls_client.dir/clean:
-	$(MAKE) -f CMakeFiles/tls_client.dir/build.make CMakeFiles/tls_client.dir/clean
-.PHONY : CMakeFiles/tls_client.dir/clean
+CMakeFiles/sha.dir/clean:
+	$(MAKE) -f CMakeFiles/sha.dir/build.make CMakeFiles/sha.dir/clean
+.PHONY : CMakeFiles/sha.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

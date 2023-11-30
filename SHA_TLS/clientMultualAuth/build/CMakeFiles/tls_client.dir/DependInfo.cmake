@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/main.cpp" "/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/build/CMakeFiles/tls_client.dir/main.cpp.o"
   "/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/sha1.cpp" "/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/build/CMakeFiles/tls_client.dir/sha1.cpp.o"
+  "/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/tls.cpp" "/mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/build/CMakeFiles/tls_client.dir/tls.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
