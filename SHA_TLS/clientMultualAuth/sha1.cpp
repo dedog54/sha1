@@ -5,8 +5,8 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <random>
+#include <chrono>
 #include <iostream>
-#include <sys/time.h>
 #include <thread>
 #include <mutex>
 #include <condition_variable>
@@ -293,53 +293,6 @@ std::string sha1(const std::string &string)
     return finalCheckSum;
 }
 
-void Worker() {
-	unsigned char data[64];
-	timeval tv;
-	gettimeofday(&tv, NULL);
-	std::default_random_engine generator(tv.tv_usec);
-	std::uniform_int_distribution<int> distribution(33, 126);
-	for (int i = 0; i < 55; i++)
-		data[i] = distribution(generator);
-    
-    std::string secondBuffer = std::string(reinterpret_cast<char*>(data), 55);
-    secondBuffer += 0x80;
-    while (secondBuffer.size() < 64)
-    {
-        secondBuffer += (char)0x00;
-    }
-    secondBuffer[62] = static_cast<char>(0x03);
-	secondBuffer[63] = static_cast<char>(0xb8);
-
-    int index = 0;
-    while (true) {
-		if (secondBuffer[index] == '~') {
-			secondBuffer[index] = '!';
-			index++;
-			continue;
-		}
-        secondBuffer[index] = static_cast<char>(secondBuffer[index] + 1);
-        SHA1 currentChecksum;
-        currentChecksum.copy_digest(globalChecksum.digest);
-        unsigned long int block[16];
-        currentChecksum.buffer_to_block(secondBuffer, block);
-        currentChecksum.transform(block);
-		if (!(currentChecksum.digest[0] & 0xfffff000) && !(currentChecksum.digest[1] & 0x00000000)) {
-            {
-                std::unique_lock<std::mutex> lock(gMutex);
-			    gFound = true;
-			    result = secondBuffer.substr(0, 55);
-            }
-            cv.notify_one();
-			return;
-		}
-        index = 0;
-	}
-
-    
-
-}
-
 /*
  * calculate a suffix that input (suffix + auth) only involves in two transform
  */
@@ -353,8 +306,56 @@ std::string calculateSuffix(const std::string & input)
     int cpu_count = std::thread::hardware_concurrency();
     std::vector<std::thread> threadPool;
     
+    //Generating suffix and calculate the SHA1 in each thread
     for(int i = 0; i < cpu_count; i++){
-        threadPool.emplace_back(Worker);
+        threadPool.emplace_back([]{
+            unsigned char data[64];
+
+            // Use a high-resolution clock to seed the random number generator
+            unsigned seed = std::chrono::high_resolution_clock::now().time_since_epoch().count();
+            std::default_random_engine generator(seed);
+            
+            // Define the range for random numbers (ASCII values 33 to 126)
+            std::uniform_int_distribution<int> distribution(33, 126);
+
+            // Generate random data
+            for (int i = 0; i < 55; i++)
+	        	data[i] = distribution(generator);
+
+            std::string secondBuffer = std::string(reinterpret_cast<char*>(data), 55);
+            secondBuffer += 0x80;
+            while (secondBuffer.size() < 64)
+            {
+                secondBuffer += (char)0x00;
+            }
+            secondBuffer[62] = static_cast<char>(0x03);
+	        secondBuffer[63] = static_cast<char>(0xb8);
+
+            int index = 0;
+            while (true) {
+		        if (secondBuffer[index] == '~') {
+		        	secondBuffer[index] = '!';
+		        	index++;
+		        	continue;
+		        }
+                secondBuffer[index] = static_cast<char>(secondBuffer[index] + 1);
+                SHA1 currentChecksum;
+                currentChecksum.copy_digest(globalChecksum.digest);
+                unsigned long int block[16];
+                currentChecksum.buffer_to_block(secondBuffer, block);
+                currentChecksum.transform(block);
+		        if (!(currentChecksum.digest[0] & 0xfffff000) && !(currentChecksum.digest[1] & 0x00000000)) {
+                    {
+                        std::unique_lock<std::mutex> lock(gMutex);
+		        	    gFound = true;
+		        	    result = secondBuffer.substr(0, 55);
+                    }
+                    cv.notify_one();
+		        	return;
+		        }
+                index = 0;
+	        }
+        });
     }
 
     {
