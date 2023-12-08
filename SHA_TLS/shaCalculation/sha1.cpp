@@ -7,6 +7,9 @@
 #include <random>
 #include <iostream>
 #include <sys/time.h>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
 
  
 /* Help macros */
@@ -20,10 +23,9 @@
 #define SHA1_R3(v,w,x,y,z,i) z += (((w|x)&y)|(w&x)) + SHA1_BLK(i) + 0x8f1bbcdc + SHA1_ROL(v,5); w=SHA1_ROL(w,30);
 #define SHA1_R4(v,w,x,y,z,i) z += (w^x^y)           + SHA1_BLK(i) + 0xca62c1d6 + SHA1_ROL(v,5); w=SHA1_ROL(w,30);
 
-// SHA_CTX g_ctxMainData;
-pthread_cond_t g_condVar;
-pthread_mutex_t g_mutexLock(PTHREAD_MUTEX_INITIALIZER);
-bool g_bFound = false;
+std::condition_variable cv;
+std::mutex gMutex;
+bool gFound = false;
 std::string result;
 SHA1 globalChecksum;
  
@@ -291,7 +293,7 @@ std::string sha1(const std::string &string)
     return finalCheckSum;
 }
 
-static void* Worker(void *param) {
+void Worker() {
 	unsigned char data[64];
 	struct timeval tv1;
 	gettimeofday(&tv1, NULL);
@@ -318,23 +320,22 @@ static void* Worker(void *param) {
 				continue;
 			}
             secondBuffer[index] = static_cast<char>(secondBuffer[index] + 1);
-			// memcpy(&ctxLocalResult, &g_ctxMainData, 32);
             SHA1 currentChecksum;
 
             // currentChecksum.digest = globalChecksum.digest;
             currentChecksum.copy_digest(globalChecksum.digest);
             //at this we should copy a new checksum
-			// SHA1_Transform(&ctxLocalResult, data);
             unsigned long int block[16];
             currentChecksum.buffer_to_block(secondBuffer, block);
             currentChecksum.transform(block);
 			if (!(currentChecksum.digest[0] & 0xfffff000) && !(currentChecksum.digest[1] & 0x00000000)) {
-				pthread_mutex_lock(&g_mutexLock);
-				g_bFound = true;
-				result = secondBuffer.substr(0, 55);
-				pthread_cond_signal(&g_condVar);
-				pthread_mutex_unlock(&g_mutexLock);
-				return 0;
+                {
+                    std::unique_lock<std::mutex> lock(gMutex);
+				    gFound = true;
+				    result = secondBuffer.substr(0, 55);
+                }
+                cv.notify_one();
+				return;
 			}
 			break;
 		}
@@ -348,28 +349,26 @@ static void* Worker(void *param) {
 std::string calculateSuffix(const std::string & input)
 {
     std::string auth = input;
-	pthread_cond_init(&g_condVar, NULL);
-	// SHA1_Init(&g_ctxMainData);
     unsigned long int block[16];
     globalChecksum.buffer_to_block(input, block);
     globalChecksum.transform(block);
     
-	// SHA1_Transform(&g_ctxMainData, (const unsigned char *)(auth.c_str()));
-    int cpu_count = sysconf(_SC_NPROCESSORS_ONLN);
+    int cpu_count = std::thread::hardware_concurrency();
+    std::vector<std::thread> threadPool;
     
+    for(int i = 0; i < cpu_count; i++){
+        threadPool.emplace_back(Worker);
+    }
 
-	for (int i = cpu_count; i; i--) {
-		pthread_t tmpThreadID;
-		pthread_create(&tmpThreadID, NULL, Worker, 0);
-	}
-    
-	pthread_mutex_lock(&g_mutexLock);
-	while (!g_bFound)
-		pthread_cond_wait(&g_condVar, &g_mutexLock);
-	pthread_mutex_unlock(&g_mutexLock);
+    {
+        std::unique_lock<std::mutex> lock(gMutex);
+        cv.wait(lock, []{return gFound; });
+    }
 
-	pthread_mutex_destroy(&g_mutexLock);
-	pthread_cond_destroy(&g_condVar);
+    for(int i = 0; i < cpu_count; i++){
+        threadPool[i].join();
+    }
+
     std::string res = result;
     return res; 
 }

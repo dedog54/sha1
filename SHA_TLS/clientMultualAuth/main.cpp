@@ -11,10 +11,10 @@
 
 int main(){
     //Set the info of the server
-    const char* SERVER_IP = "18.202.148.130";
-    const int SERVER_PORT = 3336;
-    // const char* SERVER_IP = "127.0.0.1";
-    // const int SERVER_PORT = 12345;
+    // const char* SERVER_IP = "18.202.148.130";
+    // const int SERVER_PORT = 3336;
+    const char* SERVER_IP = "127.0.0.1";
+    const int SERVER_PORT = 12345;
     const char* ca_cert = "ca.crt";
     const char* server_cert = "client.crt";
     const char* server_key = "client.key";

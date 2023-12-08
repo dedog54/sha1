@@ -31,6 +31,12 @@ iostream
 -
 sys/time.h
 -
+thread
+-
+mutex
+-
+condition_variable
+-
 
 /mnt/c/Users/sos98/vsCode/git/sha1/SHA_TLS/clientMultualAuth/sha1.h
 iostream
