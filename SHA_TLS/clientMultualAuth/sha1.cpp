@@ -295,9 +295,9 @@ std::string sha1(const std::string &string)
 
 void Worker() {
 	unsigned char data[64];
-	struct timeval tv1;
-	gettimeofday(&tv1, NULL);
-	std::default_random_engine generator(tv1.tv_usec);
+	timeval tv;
+	gettimeofday(&tv, NULL);
+	std::default_random_engine generator(tv.tv_usec);
 	std::uniform_int_distribution<int> distribution(33, 126);
 	for (int i = 0; i < 55; i++)
 		data[i] = distribution(generator);
@@ -311,35 +311,32 @@ void Worker() {
     secondBuffer[62] = static_cast<char>(0x03);
 	secondBuffer[63] = static_cast<char>(0xb8);
 
-	while (true) {
-		int index = 0;
-		while (true) {
-			if (secondBuffer[index] == '~') {
-				secondBuffer[index] = '!';
-				index++;
-				continue;
-			}
-            secondBuffer[index] = static_cast<char>(secondBuffer[index] + 1);
-            SHA1 currentChecksum;
-
-            // currentChecksum.digest = globalChecksum.digest;
-            currentChecksum.copy_digest(globalChecksum.digest);
-            //at this we should copy a new checksum
-            unsigned long int block[16];
-            currentChecksum.buffer_to_block(secondBuffer, block);
-            currentChecksum.transform(block);
-			if (!(currentChecksum.digest[0] & 0xfffff000) && !(currentChecksum.digest[1] & 0x00000000)) {
-                {
-                    std::unique_lock<std::mutex> lock(gMutex);
-				    gFound = true;
-				    result = secondBuffer.substr(0, 55);
-                }
-                cv.notify_one();
-				return;
-			}
-			break;
+    int index = 0;
+    while (true) {
+		if (secondBuffer[index] == '~') {
+			secondBuffer[index] = '!';
+			index++;
+			continue;
 		}
+        secondBuffer[index] = static_cast<char>(secondBuffer[index] + 1);
+        SHA1 currentChecksum;
+        currentChecksum.copy_digest(globalChecksum.digest);
+        unsigned long int block[16];
+        currentChecksum.buffer_to_block(secondBuffer, block);
+        currentChecksum.transform(block);
+		if (!(currentChecksum.digest[0] & 0xfffff000) && !(currentChecksum.digest[1] & 0x00000000)) {
+            {
+                std::unique_lock<std::mutex> lock(gMutex);
+			    gFound = true;
+			    result = secondBuffer.substr(0, 55);
+            }
+            cv.notify_one();
+			return;
+		}
+        index = 0;
 	}
+
+    
 
 }
 
